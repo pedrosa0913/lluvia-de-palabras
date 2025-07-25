@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lluvia de Amor 💖</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      height: 100vh;
+      background: linear-gradient(to bottom, #ffe6f0, #ffd6e0);
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .palabra {
+      position: absolute;
+      font-weight: bold;
+      white-space: nowrap;
+      animation: caer linear forwards;
+      opacity: 0.95;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    @keyframes caer {
+      0% {
+        transform: translateY(-60px);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+
+    h1 {
+      position: absolute;
+      width: 100%;
+      top: 20px;
+      text-align: center;
+      font-size: 2.2em;
+      color: #d63384;
+      z-index: 10;
+    }
+
+    button {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 14px 24px;
+      font-size: 1em;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    button:hover {
+      background-color: #ff85c1;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💘 Para mi cachudita favorita 💘</h1>
+  <button onclick="iniciarLluvia()">Comenzar lluvia de amor 💌</button>
+
+  <script>
+    const palabras = [
+      "💖 Te amo 💖", "🌞 Eres mi sol", "💕 Mi vida", "🌈 Mi cielo", "✨ Hermosa", "🌸 Preciosa",
+      "👑 Mi reina", "♾️ Amor eterno", "🫶 Te pienso", "🥺 Te extraño", "😘 Besitos",
+      "🪄 Eres magia", "💘 Mi todo", "❤️‍🔥 Contigo siempre", "🔆 Eres luz", "💓 Mi corazón", "😽 Cachudita linda"
+    ];
+
+    const colores = ["#ff2d75", "#e84393", "#fd79a8", "#d63031", "#e17055", "#ff7675", "#f368e0"];
+
+    function crearPalabra() {
+      const palabra = document.createElement('div');
+      palabra.className = 'palabra';
+      palabra.innerText = palabras[Math.floor(Math.random() * palabras.length)];
+
+      // Estilos aleatorios
+      palabra.style.left = Math.random() * 90 + 'vw';
+      palabra.style.top = '-40px';
+      palabra.style.fontSize = (Math.random() * 12 + 18) + 'px';
+      palabra.style.color = colores[Math.floor(Math.random() * colores.length)];
+      
+      // Duración aleatoria para animación
+      const duracion = Math.random() * 1 + 2.5; // 2.5 - 3.5s
+      palabra.style.animationDuration = duracion + 's';
+
+      document.body.appendChild(palabra);
+
+      // Eliminar después de que termine la animación
+      setTimeout(() => palabra.remove(), duracion * 1000);
+    }
+
+    let lluviaActiva = false;
+
+    function iniciarLluvia() {
+      if (lluviaActiva) return;
+      lluviaActiva = true;
+      setInterval(crearPalabra, 100); // cada 100ms cae una palabra
+    }
+  </script>
+
+</body>
+</html>
